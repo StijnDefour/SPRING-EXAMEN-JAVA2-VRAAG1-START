@@ -34,16 +34,5 @@ public class EventHandler {
     	String answer = eightBall.getRandomAnswer(question);
     	
     	ui.getLabel2().setText(answer);
-    	
-		/*String username = ui.getUserName().getText();
-		String password = ui.getPassword().getPassword().toString();
-		User user = new User(username, password);
-		
-        repository.save(user);
-        
-        System.out.println(user.toString() + " saved in repository");
-        System.out.println("Find all : ") ;
-        repository.findAll().forEach(System.out::println);*/
-    	
     }
 }

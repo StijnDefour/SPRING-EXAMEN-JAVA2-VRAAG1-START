@@ -1,4 +1,5 @@
 package edu.ap.spring.model;
+import java.util.Arrays;
 import java.util.Random;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,18 +19,15 @@ public class EightBall {
     }
     
 	private String[] answers = {"It is certain", 			//
-								"Yes definitely", 			
+								"Yes definitely", 			//
 								"Most likely",       		//
-								"Outlook good",
-								"Better not tell you now",	//
+								"Outlook good",				//
+								"Better not tell you now",	//	
 								"Cannot predict now",		//
-								"Don't count on it", 
-								"Outlook not so good"};		
+								"Don't count on it", 		//
+								"Outlook not so good"};		//
 	
 	public String getRandomAnswer(String question) {		
-		if (question == "") {
-			return "";
-		}
 		
 		Random generator = new Random();
 		int randomIndex = generator.nextInt(answers.length);
@@ -70,15 +68,15 @@ public class EightBall {
 	
 	private boolean AnswerOccupied(int i) {
 		String testanswer = answers[i];
-		System.out.println(testanswer);
 		
-		try {
-			Question testfound = repository.findByAnswer(testanswer);
-			return true; 
-		}
-		catch(Exception exa) {
-			return false;
-		}
+		Iterable<Question> questions = repository.findAll();
+		for (Question q : questions) {
+		    if (q.getAnswer() == testanswer) {
+		    	return true;
+		    }
+		}	
+		
+		return false;
 	}
 
 	public String[] getAnswers() {
