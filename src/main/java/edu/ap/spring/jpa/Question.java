@@ -13,6 +13,8 @@ public class Question {
 
     private String question, answer;
 
+    public Question() {}
+    
 	public Question(String question, String answer) {
 		this.question = question;
 		this.answer = answer;

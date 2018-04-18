@@ -20,6 +20,9 @@ public class EventHandler {
     }
     
     @Autowired
+	private EightBall eightBall;
+    
+    @Autowired
     public void setUI(UI ui) {
     		this.ui = ui;
     }
@@ -28,10 +31,7 @@ public class EventHandler {
     		
     	String question = ui.getQuestionInput().getText();
     	
-
-        EightBall eightball = new EightBall();
-    	
-    	String answer = eightball.getRandomAnswer(question);
+    	String answer = eightBall.getRandomAnswer(question);
     	
     	ui.getLabel2().setText(answer);
     	
