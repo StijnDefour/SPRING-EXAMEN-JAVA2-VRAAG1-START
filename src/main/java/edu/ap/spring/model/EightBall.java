@@ -17,14 +17,14 @@ public class EightBall {
     		this.repository = repository;
     }
     
-	private String[] answers = {"It is certain", 
-								"Yes definitely", 	//
-								"Most likely",       //
+	private String[] answers = {"It is certain", 			//
+								"Yes definitely", 			
+								"Most likely",       		//
 								"Outlook good",
-								"Better not tell you now",
-								"Cannot predict now",
+								"Better not tell you now",	//
+								"Cannot predict now",		//
 								"Don't count on it", 
-								"Outlook not so good"};
+								"Outlook not so good"};		
 	
 	public String getRandomAnswer(String question) {		
 		if (question == "") {
@@ -52,8 +52,9 @@ public class EightBall {
 			}
 			catch(Exception ex) {}
 			
-			if (cnt >= answers.length) {
-				while (AnswerOccupied(randomIndex)) {
+			
+			if (cnt < answers.length) {
+				while (this.AnswerOccupied(randomIndex) == true) {
 					randomIndex = generator.nextInt(answers.length);
 				}
 			} 
@@ -68,13 +69,15 @@ public class EightBall {
 	}
 	
 	private boolean AnswerOccupied(int i) {
-		String answer = answers[i];
+		String testanswer = answers[i];
+		System.out.println(testanswer);
+		
 		try {
-			Question found = repository.findByAnswer(answer);
-			return false; 
-		}
-		catch(Exception ex3) {
+			Question testfound = repository.findByAnswer(testanswer);
 			return true; 
+		}
+		catch(Exception exa) {
+			return false;
 		}
 	}
 
